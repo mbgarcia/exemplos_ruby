@@ -18,10 +18,9 @@ class Biblioteca
     "Livros da biblioteca: #{@livros}"
   end
 
-  def livros_por_categoria categoria, imprime_autor, imprime_titulo
+  def livros_por_categoria categoria, bloco
     @livros[categoria].each do |livro|
-      imprime_autor.call livro
-      imprime_titulo.call livro
+      bloco.call livro
     end 
   end
 end

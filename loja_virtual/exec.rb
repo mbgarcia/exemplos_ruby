@@ -16,14 +16,52 @@ def init
   @biblioteca.adiciona(@css)
 
   imprime_autor = Proc.new do |livro| 
-    p livro.autor
+    p livro.autor + " - " + livro.titulo    
   end
 
   imprime_titulo = Proc.new do |livro| 
     p livro.titulo
   end
 
-  @biblioteca.livros_por_categoria :testes, imprime_autor, imprime_titulo
+  lambda = lambda do  
+    p 'executou lambda'
+  end
+
+  proc = Proc.new do  
+    p 'executou proc'
+  end
+
+  def proc_com_return 
+    Proc.new {return "retornando algo de uma proc"}.call
+    "Proc finalizada"
+  end
+
+  def lamba_com_return
+    lambda {return "retornando algo de um lambda"}.call
+    "Lamba finalizado"
+  end
+
+  def lambda_test
+    lam = lambda {return "retornando de lambda"}
+    puts lam.call
+    puts "passou lambda"
+  end
+
+  lambda_test
+
+  def proc_test
+    proc = Proc.new {return "retornando de proc"}
+    puts proc.call
+    puts "passou proc"
+  end
+
+  proc_test
+
+  puts proc_com_return
+
+  puts lamba_com_return
+
+  @biblioteca.livros_por_categoria :testes, proc
 
   @relatorio = Relatorio.new @biblioteca
 
