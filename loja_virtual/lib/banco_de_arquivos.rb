@@ -7,4 +7,11 @@ class BancoDeArquivos
       arquivo.puts ""
     end
   end
+
+  def carrega
+    $/ = "\n\n"
+    File.open("livros.yml", "r").map do |livro|
+      YAML.load livro 
+    end
+  end
 end
